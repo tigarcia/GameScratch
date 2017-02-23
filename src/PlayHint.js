@@ -1,30 +1,60 @@
 import React, {Component} from 'react'
 import {
   View,
-  Text
+  Text,
+  TextInput,
+  Button,
+  StyleSheet
 } from 'react-native'
 const Sound = require('react-native-sound');
 
 export default class PlayHint extends Component {
+  constructor(props) {
+    super(props);
+    this.sound = null;
+
+    this.playCallback = this.playCallback.bind(this);
+  }
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  playCallback(success) {
+    if (success) {
+      this.props.onSongDone();
+    } else {
+      console.warn("Song did not play properly");
+    }
+  }
 
   componentDidMount() {
-    const s = new Sound('audio.m4a', Sound.MAIN_BUNDLE, (e) => {
-      if (e) {
-        console.log('error', e);
-      } else {
-        //s.setSpeed(1);
-        console.log('duration', s.getDuration());
-        s.play();
-      }
+    if (this.sound) {
+      this.sound.stop();
+      this.sound.release();
+    }
+    this.sound = new Sound(this.props.audioFile,
+      this.props.audioPath,
+      (e) => {
+        if (e) {
+          console.warn('error', e);
+        } else {
+          this.sound.play(this.playCallback);
+        }
     });
   }
-  render() {
-    return (
-      <View>
-        <Text>Yolo</Text>
-      </View>
-    );
+
+  componentWillUnmount() {
+    if (this.sound) {
+      this.sound.stop();
+      this.sound.release();
+    }
   }
 
-
+  render() {
+    return (
+      <View />
+    );
+  }
 }
+
