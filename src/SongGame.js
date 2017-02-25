@@ -14,7 +14,7 @@ export default class SongGame extends Component {
       hintScene: true,
       playAudio: false,
       guess: '',
-      guessIncorrect: false,
+      guessIncorrect: null,
       spinner: null,
       song: {}
     }
@@ -30,7 +30,7 @@ export default class SongGame extends Component {
       hintScene: true,
       playAudio: false,
       guess: '',
-      guessIncorrect: false,
+      guessIncorrect: null,
       spinner: null,
       song: {}
     });

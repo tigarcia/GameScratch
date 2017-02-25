@@ -1,20 +1,20 @@
-
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import {
   StyleSheet,
   Text,
   View,
   Button
-} from 'react-native'
+} from 'react-native';
+import CustomButton from './CustomButton';
 
 export default class GameWelcome extends Component {
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Song Guessing Game!
+          Guess That Song
         </Text>
-        <Button
+        <CustomButton
           onPress={this.props.onStartPlaying}
           title="Start" />
       </View>
@@ -25,18 +25,14 @@ export default class GameWelcome extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 40,
+    color: 'blue',
     textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    fontWeight: 'bold'
+  }
 });
