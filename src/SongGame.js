@@ -88,12 +88,13 @@ export default class SongGame extends Component {
         this.setState({song});
         return song;
       })
-      .then(function(s) {
+      .then((s) => {
         return RNFS.downloadFile({
           fromUrl: s.audioUrl,
           toFile: `${audioPath}/${audioFile}`
         }).promise;
-      }).then((d) => this.setState({playAudio: true}))
+      })
+      .then((d) => this.setState({playAudio: true}))
       .catch((err) => {
         console.warn("Download error: ", err);
         this.resetState();
